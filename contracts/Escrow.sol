@@ -24,6 +24,7 @@ contract Escrow {
     event LogDeposit(bytes32 id, address from, uint amount, address to);
     event LogConfirm(bytes32 id, address from, uint amount, address to);
     event LogRefund(bytes32 id, address from, uint amount, address to);
+    event LogReceive(address from, uint amount);
 
     modifier orderExist(bytes32 id) {
         require(orderBook[id].amount != 0, "order does not exist");
@@ -58,7 +59,7 @@ contract Escrow {
     }
 
     receive() external payable {
-        revert();
+        emit LogReceive(msg.sender, msg.value);
     }
 
     fallback() external {
