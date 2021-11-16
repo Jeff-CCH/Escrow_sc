@@ -102,8 +102,8 @@ contract Escrow {
     }
 
     function _randMod() internal returns(bytes32) {
-    randNonce++;
-    return keccak256(abi.encodePacked(block.timestamp, msg.sender, randNonce));
+        randNonce++;
+        return keccak256(abi.encodePacked(block.timestamp, msg.sender, randNonce));
   }
 }
 
